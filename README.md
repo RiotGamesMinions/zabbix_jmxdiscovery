@@ -1,6 +1,6 @@
 # zabbix_jmxdiscovery
 
-This project aims to make auto discovery of JMX attributes easier for Zabbix monitoring, but allowing you to use JMX patterns when generating discovery rules. This program will expose the ObjectName, Description and any properties set on the JMX MBean to Zabbix.
+This project aims to make auto discovery of JMX attributes easier for Zabbix monitoring, but allowing you to use JMX patterns when generating discovery rules. This program will expose the ObjectName, Description and any properties set on the JMX MBean to Zabbix. Properties will be exposed as `{#PROP<MBean Property named in all uppercase}`. For example, if your MBean has a property called type it will be exposed to Zabbix as `{#PROPTYPE}`.
 
 ## Usage
 `java -jar JMXDiscovery <pattern> <host[:port]> [username] [password]`

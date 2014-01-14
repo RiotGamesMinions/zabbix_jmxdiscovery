@@ -3,4 +3,9 @@
 
 # Ignore Idea files
 .idea
+*.iml
 out
+
+# Ignore ant outputs
+tmp
+dist

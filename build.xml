@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="JMXDiscovery" basedir="." default="jar">
+    <property name="version" value="0.0.1"/>
+    <property name="debug" value="true"/>
+
+    <property name="src.dir" value="src"/>
+    <property name="jar.dir" value="dist"/>
+    <property name="compile.dir" value="tmp"/>
+    <property name="lib.dir" value="lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${compile.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+    </target>
+
+    <condition property="isdebug">
+        <equals arg1="${debug}" arg2="true"/>
+    </condition>
+
+    <target name="clean" description="Delete all generated files" unless="isdebug">
+        <echo message="Cleaning up temp files"/>
+        <delete dir="${compile.dir}" failonerror="false"/>
+    </target>
+
+    <target name="compile" description="Compile the java file" depends="init">
+        <mkdir dir="${compile.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${compile.dir}" classpathref="classpath" includeantruntime="false"/>
+    </target>
+
+    <target name="jar" description="Create the jar file" depends="compile">
+        <jar destfile="${jar.dir}/${ant.project.name}-${version}.jar" basedir="${compile.dir}">
+            <zipgroupfileset dir="${lib.dir}" includes="**/*.jar"/>
+            <manifest>
+                <attribute name="Main-Class" value="com.riotgames.mondev.Main"/>
+            </manifest>
+        </jar>
+
+        <antcall target="clean"/>
+    </target>
+
+</project>

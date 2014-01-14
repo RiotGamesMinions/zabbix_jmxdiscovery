@@ -52,3 +52,13 @@ Once the files have been copied to the *extchk* folder, you can then access it f
 jmx_discovery[<pattern>,<hostname[:port]>,<optional username>,<optional password>]
 ```
 To generate the output shown in the example above, on a HornetQ JMX server with no authentication and a JMX remote port set to 6445 you would use the key `jmx_discovery["org.hornetq:module=JMS,type=Queue,name=*",{HOST.IP}:6445]`
+
+## Contributors
+ * Asbjorn Kjaer (http://github.com/bunjiboys/)
+
+## How to contribute
+Contributions to the code is always welcome, in particular
+ * Example Zabbix templates using jmx_discovery
+ * Improvements to documentation
+
+If you have any general questions or concerns please contact riot-open-source@riotgames.com

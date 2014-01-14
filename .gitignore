@@ -1,0 +1,6 @@
+# Vim 
+*.swp
+
+# Ignore Idea files
+.idea
+out

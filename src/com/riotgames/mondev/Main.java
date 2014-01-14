@@ -3,7 +3,7 @@ package com.riotgames.mondev;
 public class Main {
 
     public static void main(String[] args) {
-		JMXChecker jmx;
+		JMXDiscovery jmx;
 		String pattern, host, usr, pwd;
 		int port = 9001;
 		pattern = host = usr = pwd = null;
@@ -25,7 +25,7 @@ public class Main {
 		} else
 			usage();
 
-		jmx = new JMXChecker(host, port, usr, pwd);
+		jmx = new JMXDiscovery(host, port, usr, pwd);
 
 		try {
 			System.out.println(jmx.discoverMBeans(pattern));
@@ -35,7 +35,7 @@ public class Main {
 	}
 
 	private static void usage() {
-		System.out.println("Usage: java -jar JMXChecker.jar <pattern> <hostname[:port]> [username] [password]\n");
+		System.out.println("Usage: java -jar JMXDiscovery.jar <pattern> <hostname[:port]> [username] [password]\n");
 		System.exit(-1);
 	}
 }

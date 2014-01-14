@@ -13,13 +13,13 @@ import java.util.Map;
 import java.util.Set;
 import org.json.*;
 
-public class JMXChecker {
+public class JMXDiscovery {
 	private MBeanServerConnection mbsc;
 	private JMXServiceURL jmxServerUrl;
 	private JMXConnector jmxc;
 	private String username, password;
 
-	public JMXChecker(String hostname, int port, String usr, String pwd) {
+	public JMXDiscovery(String hostname, int port, String usr, String pwd) {
 		try
 		{
 			this.jmxServerUrl = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + hostname + ":" + port + "/jmxrmi");

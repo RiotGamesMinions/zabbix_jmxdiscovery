@@ -1,6 +1,6 @@
 # zabbix_jmxdiscovery
 
-This project aims to make auto discovery of JMX attributes easier for Zabbix monitoring, but allowing you to use JMX patterns when generating discovery rules. This program will expose the ObjectName, Description and any properties set on the JMX MBean to Zabbix. Properties will be exposed as `{#PROP<MBean Property named in all uppercase}`. For example, if your MBean has a property called type it will be exposed to Zabbix as `{#PROPTYPE}`.
+This project aims to make auto discovery of JMX attributes easier for Zabbix monitoring by allowing you to use JMX patterns when generating discovery rules. This program will expose the ObjectName, Description and any properties set on the JMX MBean to Zabbix. Properties will be exposed as `{#PROP<MBean Property named in all uppercase}`. For example, if your MBean has a property called `UPTIME` it will be exposed to Zabbix as `{#PROPUPTIME}`.
 
 ## Usage
 `java -jar JMXDiscovery <pattern> <host[:port]> [username] [password]`
@@ -44,7 +44,7 @@ The output below is an example of what would be returned using the pattern `org.
 }
 ```
 ## Zabbix integration
-To use this program in Zabbix, place the `jmx_discovery` script in the External Checks (*extchk* here-after) folder configured in Zabbix. Next, create a new folder called lib under the *extchk* folder and copy the `JMXDiscovery.jar` file into the newly created folder. Ensure that the `jmx_discovery` script is executely (`chmod 755 jmx_discovery`).
+To use this program in Zabbix, place the `jmx_discovery` script in the External Checks ( *extchk* here-after) folder configured in Zabbix. Next, create a new folder called lib under the *extchk* folder and copy the `JMXDiscovery.jar` file into the newly created folder. Ensure that the `jmx_discovery` script is executable (`chmod 755 jmx_discovery`).
 
 ### Creating discovery rules
 Once the files have been copied to the *extchk* folder, you can then access it from any check in Zabbix by defining the the type to be `External Check` and the key must be in the format of 
@@ -61,4 +61,4 @@ Contributions to the code is always welcome, in particular
  * Example Zabbix templates using jmx_discovery
  * Improvements to documentation
 
-If you have any general questions or concerns please contact riot-open-source@riotgames.com
+If you have any general questions or concerns please contact Asbjorn Kjaer <akjaer@riotgames.com>.

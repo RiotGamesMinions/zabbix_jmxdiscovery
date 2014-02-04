@@ -57,6 +57,6 @@ To generate the output shown in the example above, on a HornetQ JMX server with 
  * Asbjorn Kjaer (http://github.com/bunjiboys/)
 
 ## How to contribute
-Please refer to CONTRIBUTING.md for information on how to contribute to this project.
+Please refer to `CONTRIBUTING.md` for information on how to contribute to this project.
 
 If you have any general questions or concerns please contact Asbjorn Kjaer <akjaer@riotgames.com>.

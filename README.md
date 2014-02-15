@@ -14,6 +14,11 @@ The hostname is required and can be either IP or DNS hostname. If not supplied t
 ### Username & Password
 If you have authentication enabled on your JMX server, you can supply the username and password to authenticate with here. Both username and password must either be blank or set. An error will be raised if only one is supplied.
 
+## Compile and install
+This project uses Apache Ant to compile the source code into a Jar file. By default just running *ant* in the root of the will output both the Jar file and the appropriate wrapper script into a folder called `install`, which is located in the root of the project. If however you would like to have ant install the files directly to your External Scripts folder, you can override the install location parameter during the *ant* invocation.
+
+Example: `ant -Ddir.install=/usr/local/zabbix/externalscripts`
+
 ## Example output
 The output below is an example of what would be returned using the pattern `org.hornetq:module=JMS,type=Queue,name=*` on a HornetQ server.
 ```json

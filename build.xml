@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="JMXDiscovery" basedir="." default="jar">
+<project name="JMXDiscovery" basedir="." default="install">
     <property name="version" value="0.0.1"/>
     <property name="debug" value="true"/>
 
-    <property name="src.dir" value="src"/>
-    <property name="jar.dir" value="dist"/>
-    <property name="compile.dir" value="tmp"/>
-    <property name="lib.dir" value="lib"/>
+    <property name="dir.src" value="src"/>
+    <property name="dir.jar" value="dist"/>
+    <property name="dir.compile" value="tmp"/>
+    <property name="dir.lib" value="lib"/>
+    <property name="dir.install" value="install"/>
 
     <path id="classpath">
-        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <fileset dir="${dir.lib}" includes="**/*.jar"/>
     </path>
 
     <target name="init">
-        <mkdir dir="${compile.dir}"/>
-        <mkdir dir="${jar.dir}"/>
-        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${dir.compile}"/>
+        <mkdir dir="${dir.jar}"/>
+        <mkdir dir="${dir.lib}"/>
     </target>
 
     <condition property="isdebug">
@@ -24,23 +25,35 @@
 
     <target name="clean" description="Delete all generated files" unless="isdebug">
         <echo message="Cleaning up temp files"/>
-        <delete dir="${compile.dir}" failonerror="false"/>
+        <delete dir="${dir.compile}" failonerror="false"/>
     </target>
 
     <target name="compile" description="Compile the java file" depends="init">
-        <mkdir dir="${compile.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${compile.dir}" classpathref="classpath" includeantruntime="false"/>
+        <mkdir dir="${dir.compile}"/>
+        <javac srcdir="${dir.src}" destdir="${dir.compile}" classpathref="classpath" includeantruntime="false"/>
     </target>
 
     <target name="jar" description="Create the jar file" depends="compile">
-        <jar destfile="${jar.dir}/${ant.project.name}-${version}.jar" basedir="${compile.dir}">
-            <zipgroupfileset dir="${lib.dir}" includes="**/*.jar"/>
+        <jar destfile="${dir.jar}/${ant.project.name}-${version}.jar" basedir="${dir.compile}">
+            <zipgroupfileset dir="${dir.lib}" includes="**/*.jar"/>
             <manifest>
                 <attribute name="Main-Class" value="com.riotgames.mondev.Main"/>
             </manifest>
         </jar>
 
         <antcall target="clean"/>
+    </target>
+
+    <target name="install" description="Install jar and wrapper script" depends="jar">
+        <copy file="jmx_discovery.tpl" tofile="${dir.install}/jmx_discovery">
+            <!-- <filelist id="wrapper script" dir="." files="jmx_discovery.tpl" /> -->
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="%jarfile%" to="${ant.project.name}-${version}.jar" />
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        <copy file="${dir.jar}/${ant.project.name}-${version}.jar" todir="${dir.install}" />
     </target>
 
 </project>

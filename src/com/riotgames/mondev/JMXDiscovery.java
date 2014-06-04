@@ -106,7 +106,7 @@ public class JMXDiscovery {
 			JSONObject out = new JSONObject();
 			out.put("data", data);
 
-			return out.toString();
+			return out.toString(4);
 		} finally {
 			try { if (null != jmxc) jmxc.close(); } catch (java.io.IOException exception) { }
 

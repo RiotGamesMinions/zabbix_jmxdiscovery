@@ -86,7 +86,7 @@ public class JMXDiscovery {
 				// Build the standing info, description and object path
 				MBeanInfo mbi = mbsc.getMBeanInfo(beanName);
 				bean.put("{#JMXDESC}", mbi.getDescription());
-				bean.put("{#JMXOBJ}", beanName.getCanonicalName());
+				bean.put("{#JMXOBJ}", beanName.toString());
 
 				// Build a list of all the MBean properties as {#PROP<NAME>}
 				Hashtable<String, String> pt = beanName.getKeyPropertyList();

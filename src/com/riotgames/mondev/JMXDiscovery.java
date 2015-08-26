@@ -49,7 +49,8 @@ public class JMXDiscovery {
 		}
 		catch (Exception e)
 		{
-			// Print error
+            System.err.println("Problem setting up JMXServiceURL object");
+            System.err.println(e.getMessage());
 		}
 	}
 
@@ -99,11 +100,13 @@ public class JMXDiscovery {
 			mapping.put("data", beanList);
 			return mapping.toString();
 		} catch (Exception e) {
+            System.err.println("Problem retrieving JMX data");
+            System.err.println(e.getMessage());
 			JSONArray data = new JSONArray();
 			JSONObject out = new JSONObject();
 			out.put("data", data);
 
-			return out.toString();
+			return out.toString(4);
 		} finally {
 			try { if (null != jmxc) jmxc.close(); } catch (java.io.IOException exception) { }
 
